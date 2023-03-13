@@ -12,7 +12,6 @@ class UserList(models.Model):
     user_id = models.IntegerField()
     list_id = models.UUIDField()
     name = models.CharField(max_length = 50)
-    list_id = models.UUIDField()
 
 class MallList(models.Model):
     user_id = models.IntegerField()
