@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from .models import ShoppingList, MallList, Item, UserList
 
 def index(request):
-    user_list = UserList.objects.filter(user_id = 1).first()
+    if not request.user.is_authenticated:
+        return HttpResponse("You are not logged in")
+    user = request.user
+    user_list = UserList.objects.filter(user_id = user).first()
     if request.method == 'POST':
         item_name = request.POST.get('item')
         amount = request.POST.get('amount')
